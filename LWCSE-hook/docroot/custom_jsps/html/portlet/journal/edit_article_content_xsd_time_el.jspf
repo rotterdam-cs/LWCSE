@@ -1,0 +1,27 @@
+
+<aui:fieldset>
+
+	<%
+	Calendar cal = CalendarFactoryUtil.getCalendar(timeZone, locale);
+	if (elContent != null && !elContent.equals("")) {
+		DateFormat formatter = new SimpleDateFormat("H:m"); 
+		Date date = (Date)formatter.parse(elContent);
+		cal.setTime(date);
+	}
+	
+	%>
+
+	<aui:field-wrapper>
+		<div class="aui-field-row">
+			<liferay-ui:input-time
+				amPmParam="dateAmPm"
+				amPmValue="<%= cal.get(Calendar.AM_PM) %>"
+				hourParam="dateHour"
+				hourValue="<%= cal.get(Calendar.HOUR) %>"
+				minuteParam="dateMinute"
+				minuteValue="<%= cal.get(Calendar.MINUTE) %>"
+				minuteInterval="<%= 1 %>"
+			/>
+		</div>
+	</aui:field-wrapper>
+</aui:fieldset>

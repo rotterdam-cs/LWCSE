@@ -1,0 +1,30 @@
+
+<aui:fieldset>
+
+	<%
+	Calendar cal = CalendarFactoryUtil.getCalendar(timeZone, locale);
+	if (elContent != null && !elContent.equals("")) {
+		DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy"); 
+		Date date = (Date)formatter.parse(elContent);
+		cal.setTime(date);
+	}
+	
+	%>
+
+	<aui:field-wrapper>
+		<div class="aui-field-row">
+			<liferay-ui:input-date
+				dayParam="dateDay"
+				dayValue="<%= cal.get(Calendar.DATE) %>"
+				disabled="<%= false %>"
+				firstDayOfWeek="<%= cal.getFirstDayOfWeek() - 1 %>"
+				monthParam="dateMonth"
+				monthValue="<%= cal.get(Calendar.MONTH) %>"
+				yearParam="dateYear"
+				yearValue="<%= cal.get(Calendar.YEAR) %>"
+				yearRangeStart="<%= cal.get(Calendar.YEAR) %>"
+				yearRangeEnd="<%= cal.get(Calendar.YEAR) + 5 %>"
+			/>
+		</div>
+	</aui:field-wrapper>
+</aui:fieldset>
