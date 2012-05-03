@@ -3175,10 +3175,22 @@ AUI.add(
 						}
 						else if (type == 'date') {
 							var dateContents = componentContainer.all('select');
-														
-							var day = dateContents._nodes[0].value;
-							var month = dateContents._nodes[1].value;
-							var year = dateContents._nodes[2].value;
+
+							var day = 0;
+							var month = 0;
+							var year = 0;
+							
+							for(var i=0;i<dateContents._nodes.length;i++){
+								var node = dateContents._nodes[i];
+																
+								if(node.name.indexOf("dateDay") > 0){
+									day = node.value;	
+								} else if(node.name.indexOf("dateMonth") > 0){
+									month = node.value;									
+								} else if(node.name.indexOf("dateYear") > 0){
+									year = node.value;
+								}
+							}
 							
 							day = parseInt(day, 10);
 							month = parseInt(month, 10) + 1;
@@ -3191,8 +3203,18 @@ AUI.add(
 						else if (type == 'time') {
 							var dateContents = componentContainer.all('select');
 
-							var hours = dateContents._nodes[0].value;
-							var minutes = dateContents._nodes[1].value;
+							var hours = 0;
+							var minutes = 0;
+							
+							for(var i=0;i<dateContents._nodes.length;i++){
+								var node = dateContents._nodes[i];
+																
+								if(node.name.indexOf("dateHour") > 0){
+									hours = dateContents._nodes[0].value;
+								} else if(node.name.indexOf("dateMinute") > 0){
+									minutes = node.value;									
+								}
+							}
 							
 							hours = parseInt(hours, 10);
 							minutes = parseInt(minutes, 10);
