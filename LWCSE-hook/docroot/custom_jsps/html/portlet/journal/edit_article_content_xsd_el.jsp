@@ -90,6 +90,11 @@ if (Validator.isNull(elContent) && Validator.isNotNull(elPredefinedValue)) {
 }
 
 Element contentEl = (Element)request.getAttribute(WebKeys.JOURNAL_ARTICLE_CONTENT_EL);
+
+// alvartaco
+// added to be compatible with sites having 1 or more than one locales
+// alvartaco 
+Locale[] locales = LanguageUtil.getAvailableLocales();
 %>
 
 <li class="structure-field <%= css.trim() %>" <%= parentStructureData %> dataInstanceId='<%= elInstanceId %>' dataName='<%= elName %>' dataRepeatable='<%= elRepeatable %>' dataType='<%= elType %>' dataIndexType='<%= elIndexType %>' <%= metaData %>>
@@ -347,11 +352,13 @@ Element contentEl = (Element)request.getAttribute(WebKeys.JOURNAL_ARTICLE_CONTEN
 				</c:if>
 			</div>
 			
-<!-- removed by alvartaco 4 #7715 -->
+<!-- 'start of commented block' removed by alvartaco 4 #7715 -->
 			<c:if test="<%= Validator.isNull(toLanguageId) %>">
-				<aui:input cssClass="journal-article-localized-checkbox" label="localizable" name='<%= elInstanceId + "localized-checkbox" %>' type="checkbox" value="<%= !elLanguageId.equals(StringPool.BLANK) %>" />
+				<c:if test="<%= locales.length > 1 %>">
+					<aui:input cssClass="journal-article-localized-checkbox" label="localizable" name='<%= elInstanceId + "localized-checkbox" %>' type="checkbox" value="<%= !elLanguageId.equals(StringPool.BLANK) %>" />
+				</c:if>
 			</c:if>
-<!-- removed by alvartaco 4 #7715 -->
+<!-- 'end of commented block' removed by alvartaco 4 #7715 -->
  
 			<div class="journal-article-required-message portlet-msg-error">
 				<liferay-ui:message key="this-field-is-required" />
