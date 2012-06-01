@@ -3222,6 +3222,7 @@ AUI.add(
 							// handle the AM/PM field
 							hours = parseInt(hours, 10) + (parseInt(ampm, 10) * 12);
 							if(hours == 24) hours = 0;
+							
 							minutes = parseInt(minutes, 10);
 							
 							if(hours < 10) hours = '0' + hours;
