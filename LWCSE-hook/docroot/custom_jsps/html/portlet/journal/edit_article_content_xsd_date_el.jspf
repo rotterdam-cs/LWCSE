@@ -22,7 +22,7 @@
 				monthValue="<%= cal.get(Calendar.MONTH) %>"
 				yearParam="dateYear"
 				yearValue="<%= cal.get(Calendar.YEAR) %>"
-				yearRangeStart="<%= cal.get(Calendar.YEAR) %>"
+				yearRangeStart="<%= cal.get(Calendar.YEAR) - 5 %>"
 				yearRangeEnd="<%= cal.get(Calendar.YEAR) + 5 %>"
 			/>
 		</div>
